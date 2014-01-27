@@ -1,0 +1,60 @@
+.game {
+  display: table;
+  width: 100%; }
+
+.game .game-row {
+  display: table-row; }
+
+.game .game-row li {
+  display: table-cell;
+  width: 4.2%; }
+
+.game .game-row li:last-child {
+  width: 6.3%; }
+
+.game .game-row li h6 {
+  border: 1px solid;
+  border-bottom: 0;
+  border-right: 0;
+  margin: 0;
+  padding: 5px 0;
+  font-weight: bold; }
+
+.game .game-row li:last-child h6 {
+  border-right: 1px solid; }
+
+.game .game-row li div.frame-content {
+  border: 1px solid;
+  overflow: hidden;
+  border-right: 0; }
+
+.game .game-row li:last-child div.frame-content {
+  border-right: 1px solid; }
+
+.game .game-row li div.frame-content span {
+  width: 50%;
+  line-height: 30px;
+  float: left;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  display: block; }
+
+.game .game-row li:last-child div.frame-content span {
+  width: 33.33333%; }
+
+.game .game-row li div.frame-content span.roll2 {
+  border: 1px solid;
+  border-top: 0;
+  border-right: 0; }
+
+.game .game-row li div.frame-content span.roll3 {
+  border: 1px solid;
+  border-top: 0;
+  border-right: 0; }
+
+.game .game-row li div.frame-content span.score {
+  background: none;
+  display: block;
+  font-size: 15px;
+  width: 100%; }

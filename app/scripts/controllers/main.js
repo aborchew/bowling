@@ -2,9 +2,15 @@
 
 angular.module('bowlingApp')
   .controller('MainCtrl', ['$scope', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.game = new Game();
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
+    $scope.game.bowl(3);
   }]);
