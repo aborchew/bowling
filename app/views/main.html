@@ -5,18 +5,26 @@
   <h3 class="text-muted">Bowling</h3>
 </div>
 
-<div class="jumbotron">
-  <div class="game">
-    <ul class="game-row">
-      <li ng-repeat="frame in [0,1,2,3,4,5,6,7,8,9]">
-        <h6>{{frame+1}}</h6>
-        <div class="frame-content">
-          <span class="roll1">{{game.frames[frame][0] || '&nbsp;'}}</span>
-          <span class="roll2">{{game.frames[frame][1] || '&nbsp;'}}</span>
-          <span class="roll3" ng-show="frame == 9">{{game.frames[frame][2] || '&nbsp;'}}</span>
-          <span class="score">{{game.score(frame)}}</span>
-        </div>
-      </li>
-    </ul>
+<h3>Bowl:</h3>
+<div class="btn-toolbar pins" role="toolbar">
+  <div class="btn-group btn-group-justified">
+    <a class="btn btn-primary" ng-repeat="pins in [0,1,2,3,4,5,6,7,8,9,10]" ng-click="game.bowl(pins)" >{{pins}}</a>
   </div>
+</div>
+
+{{game.frames}}
+
+<h3>Scoreboard</h3>
+<div class="game">
+  <ul class="game-row">
+    <li ng-repeat="frame in [0,1,2,3,4,5,6,7,8,9]">
+      <h6>{{frame+1}}</h6>
+      <div class="frame-content">
+        <span class="roll1">{{game.displayFrame(frame)[0]}}</span>
+        <span class="roll2">{{game.displayFrame(frame)[1]}}</span>
+        <span class="roll3" ng-show="frame == 9">{{game.displayFrame(frame)[2]}}</span>
+        <span class="score">{{game.score(frame)}}</span>
+      </div>
+    </li>
+  </ul>
 </div>

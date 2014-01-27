@@ -65,6 +65,47 @@ function Game () {
 
   };
 
+  this.displayFrame = function (frameIndex) {
+
+    var frame = this.frames[frameIndex];
+    var constructedFrame = [];
+
+    if(frame && frameIndex !== 9) {
+      if(frame.length === 1 && frame[0] === 10) {
+        return ['','X'];
+      } else if(frame.length === 2 && frame[0] + frame[1] === 10) {
+        return [frame[0],'/'];
+      } else {
+        return frame;
+      }
+    } else if(frame && frameIndex === 9) {
+
+      if(frame[0] === 10) {
+        constructedFrame[0] = 'X';
+        if(frame[1] === 10) {
+          constructedFrame[1] = 'X';
+        }
+      } else if(frame[0] + frame[1] === 10) {
+        constructedFrame[0] = frame[0];
+        constructedFrame[1] = '/';
+      }
+
+      if(frame[2]) {
+        if(frame[2] === 10) {
+          constructedFrame[2] ='X';
+        } else {
+          constructedFrame[2] = frame[2];
+        }
+      }
+
+      return constructedFrame;
+
+    }
+
+    return [];
+
+  }
+
   return this;
 
 }

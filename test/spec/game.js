@@ -261,3 +261,52 @@ describe('End game scenarios', function () {
   });
 
 })
+
+describe('Frame Displays', function () {
+
+  var game = new Game();
+  game.bowl(2);
+  game.bowl(5);
+  game.bowl(2);
+  game.bowl(8);
+  game.bowl(10);
+  game.bowl(10);
+  game.bowl(10);
+  game.bowl(10);
+  game.bowl(10);
+  game.bowl(10);
+  game.bowl(10);
+  game.bowl(8);
+  game.bowl(2);
+  game.bowl(10);
+
+  it('Should return an open frame unmodified', function () {
+
+    expect(game.displayFrame(0)[0]).toBe(2);
+    expect(game.displayFrame(0)[1]).toBe(5);
+
+  });
+
+  it('Should return a correctly modified spare frame', function () {
+
+    expect(game.displayFrame(1)[0]).toBe(2);
+    expect(game.displayFrame(1)[1]).toBe('/');
+
+  });
+
+  it('Should return a correctly modified strike frame', function () {
+
+    expect(game.displayFrame(2)[0]).toBe('');
+    expect(game.displayFrame(2)[1]).toBe('X');
+
+  });
+
+  it('Should return a correctly modified tenth frame', function () {
+
+    expect(game.displayFrame(9)[0]).toBe(8);
+    expect(game.displayFrame(9)[1]).toBe('/');
+    expect(game.displayFrame(9)[2]).toBe('X');
+
+  });
+
+})
