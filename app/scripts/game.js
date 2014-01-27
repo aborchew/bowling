@@ -5,8 +5,11 @@ function simpleReduce (arr) {
 }
 
 function Game () {
+
   var obj = {
+
     frames: [[]],
+
     bowl: function (pins) {
 
       var frames = obj.frames
@@ -14,13 +17,15 @@ function Game () {
       , currentFrame = frames[framesLength-1]
       ;
 
-      if(!framesLength || currentFrame.length === 2 || simpleReduce(currentFrame) === 10) {
+      if((currentFrame.length === 2 || simpleReduce(currentFrame) === 10) && framesLength < 10) {
         frames[framesLength] = [];
         obj.bowl(pins);
       } else {
         currentFrame[currentFrame.length] = pins;
       }
+
     },
+
     score: function (frameIndex) {
 
       var frames = obj.frames
@@ -35,27 +40,23 @@ function Game () {
       for(var i = 0; i <= frameIndex; i++) {
 
         var frame = frames[i]
-        , toTally = simpleReduce(frame)
+        , frameTally = simpleReduce(frame);
         ;
 
-        if(toTally == 10) {
-          if(frame.length == 1) {
-            if(frames[i+1] && frames[i+1][0]) {
-              toTally += frames[i+1][0];
-              if(frames[i+1][0] == 10 && frames[i+2] && frames[i+2][0]) {
-                toTally += frames[i+2][0];
-              } else if(frames[i+1][0] != 10 && frames[i+1][1]) {
-                toTally += frames[i+1][1];
-              }
-            }
-          } else if(frame.length == 2) {
-            if(frames[i+1] && frames[i+1][0]) {
-              toTally += frames[i+1][0];
+        tally += frameTally;
+
+        if(frameTally >= 10) {
+          if(frame.length == 2 && frames[i+1]) {
+            tally += frames[i+1][0] || 0;
+          } else if(frame.length == 1) {
+            tally += frames[i+1][0] || 0;
+            if(frames[i+1][0] == 10 && frames[i+2]) {
+              tally += frames[i+2][0] || 0;
+            } else {
+              tally += frames[i+1][1] || 0;
             }
           }
         }
-
-        tally += toTally;
 
       }
 
@@ -63,5 +64,7 @@ function Game () {
 
     }
   }
+
   return obj;
+
 }

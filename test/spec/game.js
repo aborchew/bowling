@@ -108,3 +108,156 @@ describe('Scoring', function () {
   })
 
 })
+
+describe('End game scenarios', function () {
+
+  it('Should bowl an open frame in the 10th', function () {
+
+    var game = new Game();
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    // Tenth frame
+    game.bowl(3);
+    game.bowl(4);
+
+    expect(game.frames.length).toBe(10);
+    expect(game.score()).toBe(257);
+
+  });
+
+  it('Should bowl a spare in the 10th', function () {
+
+    var game = new Game();
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    // Tenth frame
+    game.bowl(3);
+    game.bowl(7);
+    game.bowl(5);
+
+    expect(game.frames.length).toBe(10);
+    expect(game.score()).toBe(268);
+
+  });
+
+  it('Should record a perfect game', function () {
+
+    var game = new Game();
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+
+    expect(game.score(0)).toBe(30);
+    expect(game.score(1)).toBe(60);
+    expect(game.score(2)).toBe(90);
+    expect(game.score(3)).toBe(120);
+    expect(game.score(4)).toBe(150);
+    expect(game.score(5)).toBe(180);
+    expect(game.score(6)).toBe(210);
+    expect(game.score(7)).toBe(240);
+    expect(game.score(8)).toBe(270);
+    expect(game.score()).toBe(300);
+
+    expect(game.frames.length).toBe(10);
+    expect(game.score()).toBe(300);
+
+  });
+
+  it('Should record two strikes and a smaller tally in the tenth', function () {
+
+    var game = new Game();
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(10);
+
+    game.bowl(10);
+    game.bowl(10);
+    game.bowl(7);
+    expect(game.score(0)).toBe(30);
+    expect(game.score(1)).toBe(60);
+    expect(game.score(2)).toBe(90);
+    expect(game.score(3)).toBe(120);
+    expect(game.score(4)).toBe(150);
+    expect(game.score(5)).toBe(180);
+    expect(game.score(6)).toBe(210);
+    expect(game.score(7)).toBe(240);
+    expect(game.score(8)).toBe(270);
+    expect(game.score()).toBe(297);
+
+  });
+
+  it('Should record accurate scores throughout a game', function () {
+
+    var game = new Game();
+    game.bowl(2);
+    game.bowl(6);
+
+    game.bowl(9);
+    game.bowl(1);
+
+    game.bowl(10);
+
+    game.bowl(4);
+    game.bowl(1);
+
+    game.bowl(7);
+    game.bowl(2);
+
+    game.bowl(10);
+
+    game.bowl(8);
+    game.bowl(1);
+
+    game.bowl(2);
+    game.bowl(8);
+
+    game.bowl(9);
+    game.bowl(1);
+
+    game.bowl(7);
+    game.bowl(3);
+    game.bowl(10);
+
+    expect(game.score(0)).toBe(8);
+    expect(game.score(1)).toBe(28);
+    expect(game.score(2)).toBe(43);
+    expect(game.score(3)).toBe(48);
+    expect(game.score(4)).toBe(57);
+    expect(game.score(5)).toBe(76);
+    expect(game.score(6)).toBe(85);
+    expect(game.score(7)).toBe(104);
+    expect(game.score(8)).toBe(121);
+    expect(game.score()).toBe(141);
+
+  });
+
+})
